@@ -3662,7 +3662,107 @@ const QUIZ_CATS = ["Toutes", "Entérobactéries", "Non fermentants", "Cocci Gram
 
 // ===== MYCO/PARASITO DATA =====
 const MYCO_FICHES = [
+  
   {
+    id: "principes_myco",
+    titre: "Principes généraux — Mycologie",
+    icon: "🔬",
+    sections: [
+      {
+        titre: "Pourquoi les antibiotiques sont inactifs sur les champignons ?",
+        contenu: `<div style='line-height:1.9;font-size:.9rem;'>
+<p>Les champignons sont des <b>eucaryotes</b> — leur cellule ressemble plus à la nôtre qu'à celle d'une bactérie. Les cibles des antibiotiques (paroi bactérienne peptidoglycane, ribosomes 70S, ADN gyrase bactérienne) <b>n'existent pas chez les champignons</b>.</p>
+<p style='margin-top:.8rem;'>Les antifongiques ciblent ce qui est <b>spécifique à la cellule fongique</b> :</p>
+<table class='atb-table' style='margin-top:.5rem;'><thead><tr><th>Cible fongique</th><th>Classe antifongique</th><th>Molécule</th></tr></thead><tbody>
+<tr><td><b>Ergostérol</b> (membrane fongique — équivalent du cholestérol humain)</td><td>Polyènes</td><td>Amphotéricine B</td></tr>
+<tr><td><b>Synthèse de l'ergostérol</b> (enzyme CYP51)</td><td>Azolés</td><td>Fluconazole, voriconazole, posaconazole</td></tr>
+<tr><td><b>β-(1,3)-D-glucane synthase</b> (paroi fongique — absente chez l'homme)</td><td>Échinocandines</td><td>Caspofungine, micafungine</td></tr>
+<tr><td><b>Synthèse ADN/ARN fongique</b></td><td>Flucytosine</td><td>5-FC</td></tr>
+<tr><td><b>Squalène époxydase</b> (synthèse ergostérol)</td><td>Allylamines</td><td>Terbinafine</td></tr>
+</tbody></table>
+</div>`
+      },
+      {
+        titre: "Levures vs Moisissures vs Dimorphiques",
+        contenu: `<table class='atb-table'><thead><tr><th>Type</th><th>Morphologie</th><th>Exemples</th><th>Infection type</th></tr></thead><tbody>
+<tr><td><b>Levures</b></td><td>Cellules rondes unicellulaires, bourgeonnement. Colonies crémeuses en culture</td><td>Candida, Cryptococcus</td><td>Muqueuses, sang, LCR</td></tr>
+<tr><td><b>Moisissures</b></td><td>Filaments (hyphes) formant un mycélium. Colonies cotonneuses en culture</td><td>Aspergillus, Mucor, dermatophytes</td><td>Pulmonaire, cutanée, sinusienne</td></tr>
+<tr><td><b>Dimorphiques</b></td><td>Levure à 37°C (in vivo) / moisissure à 25°C (in vitro). Règle : <i>think of it as warm = yeast</i></td><td>Histoplasma, Coccidioides, Sporothrix</td><td>Infections endémiques (Amériques, Afrique)</td></tr>
+</tbody></table>`
+      },
+      {
+        titre: "Qui fait quoi — Terrain et champignon",
+        contenu: `<table class='atb-table'><thead><tr><th>Champignon</th><th>Terrain principal</th><th>Infection type</th></tr></thead><tbody>
+<tr><td><b>Candida albicans</b></td><td>Tout le monde (ATB, cortico, diabète, KT, chirurgie)</td><td>Muguet, candidose vaginale, candidémie</td></tr>
+<tr><td><b>Aspergillus fumigatus</b></td><td>Neutropénie prolongée, corticothérapie, greffe</td><td>Aspergillose pulmonaire invasive</td></tr>
+<tr><td><b>Cryptococcus neoformans</b></td><td>VIH (CD4 &lt; 100), greffe</td><td>Méningite cryptococcique</td></tr>
+<tr><td><b>Pneumocystis jirovecii</b></td><td>VIH (CD4 &lt; 200), corticothérapie prolongée</td><td>Pneumocystose (PCP)</td></tr>
+<tr><td><b>Mucor / Rhizopus</b></td><td>Diabète acidocétosique, deferroxamine, neutropénie</td><td>Mucormycose (rhinocérébrale, pulmonaire) — urgence chirurgicale</td></tr>
+<tr><td><b>Dermatophytes</b></td><td>Immunocompétents, contact (sport, animaux)</td><td>Teignes, onychomycoses, pied d'athlète</td></tr>
+</tbody></table>
+<div class='alert-box' style='margin-top:.8rem;background:rgba(59,130,246,.12);border-left:3px solid var(--accent-blue);padding:.7rem 1rem;border-radius:6px;'>
+<b>Règle d'or :</b> le champignon en cause dépend avant tout du <b>terrain immunologique</b>. Avant de traiter, toujours se demander : quelle est l'immunodépression sous-jacente ?
+</div>`
+      }
+    ]
+  }
+
+  ,{
+    id: "principes_parasito",
+    titre: "Principes généraux — Parasitologie",
+    icon: "🧬",
+    sections: [
+      {
+        titre: "Les 4 grands groupes de parasites",
+        contenu: `<table class='atb-table'><thead><tr><th>Groupe</th><th>Caractéristiques</th><th>Exemples</th></tr></thead><tbody>
+<tr><td><b>Protozoaires</b></td><td>Unicellulaires eucaryotes. Intracellulaires ou extracellulaires. Multiplication rapide</td><td>Plasmodium (palu), Toxoplasma, Leishmania, Trypanosoma, Giardia, Entamoeba</td></tr>
+<tr><td><b>Helminthes — Nématodes</b> (vers ronds)</td><td>Pluricellulaires. Tube digestif complet. Sexués</td><td>Ascaris, ankylostome, Strongyloides, oxyures, filaires, Trichinella</td></tr>
+<tr><td><b>Helminthes — Plathelminthes</b> (vers plats)</td><td>Cestodes (avec tête = scolex) et Trématodes (douves)</td><td>Taenia, Echinococcus (cestodes). Schistosoma, Fasciola (trématodes)</td></tr>
+<tr><td><b>Ectoparasites</b></td><td>Vivent à la surface du corps. Arthropodes</td><td>Sarcoptes scabiei (gale), poux, tiques, puces</td></tr>
+</tbody></table>`
+      },
+      {
+        titre: "L'éosinophilie — signature des helminthes tissulaires",
+        contenu: `<div style='line-height:1.9;font-size:.9rem;'>
+<p><b>Règle absolue :</b> l'éosinophilie est la signature des <b>helminthes en phase tissulaire</b> (migration larvaire). Elle est ABSENTE pour :</p>
+<ul style='margin:.5rem 0 .8rem 1rem;'>
+<li>Les protozoaires (Plasmodium, Toxoplasma, Leishmania…)</li>
+<li>Les champignons</li>
+<li>Les helminthes en phase intestinale stable (vers adultes luminaux)</li>
+</ul>
+<table class='atb-table'><thead><tr><th>Phase</th><th>Éosinophilie</th><th>Explication</th></tr></thead><tbody>
+<tr><td>Migration larvaire (phase invasive)</td><td><b>+++ maximale</b></td><td>Les larves traversent les tissus → réaction immunitaire Th2 massive</td></tr>
+<tr><td>Ver adulte en place (phase d'état)</td><td>+ modérée ou absente</td><td>Moins de contact avec les tissus</td></tr>
+<tr><td>Kyste stable (ex: kyste hydatique)</td><td>Absente ou faible</td><td>Enkysté, pas de contact avec l'immunité</td></tr>
+</tbody></table>
+<div class='alert-box' style='margin-top:.8rem;background:rgba(255,100,0,.12);border-left:3px solid orange;padding:.7rem 1rem;border-radius:6px;'>
+<b>Courbe de Lavier :</b> éosinophilie maximale en phase invasive puis décroissance. Si éosinophilie massive au retour de voyage → helminthiase en phase migratoire jusqu'à preuve du contraire.
+</div>
+</div>`
+      },
+      {
+        titre: "Notion de cycle parasitaire",
+        contenu: `<table class='atb-table'><thead><tr><th>Terme</th><th>Définition</th><th>Exemple</th></tr></thead><tbody>
+<tr><td><b>Hôte définitif</b></td><td>Hôte où le parasite se reproduit sexuellement</td><td>Chat pour Toxoplasma. Homme pour Taenia saginata</td></tr>
+<tr><td><b>Hôte intermédiaire</b></td><td>Hôte où le parasite se développe sans reproduction sexuée</td><td>Homme pour Toxoplasma. Bœuf pour Taenia saginata</td></tr>
+<tr><td><b>Vecteur</b></td><td>Arthropode qui transmet le parasite (souvent hôte intermédiaire aussi)</td><td>Anophèle pour Plasmodium. Phlébotome pour Leishmania. Tsé-tsé pour Trypanosoma</td></tr>
+<tr><td><b>Zoonose</b></td><td>Maladie animale transmissible à l'homme</td><td>Toxoplasmose, leishmaniose, trypanosomiase, échinococcose</td></tr>
+</tbody></table>`
+      },
+      {
+        titre: "Géographie et terrain — qui ramène quoi de où",
+        contenu: `<table class='atb-table'><thead><tr><th>Zone</th><th>Parasites à évoquer</th></tr></thead><tbody>
+<tr><td><b>Afrique sub-saharienne</b></td><td>Paludisme (P. falciparum +++), bilharziose (eau douce), filarioses, trypanosomiase (Afrique de l'Est/Ouest), leishmaniose viscérale</td></tr>
+<tr><td><b>Amérique latine</b></td><td>Maladie de Chagas (T. cruzi), leishmaniose cutanéo-muqueuse, paludisme (P. vivax), larva migrans</td></tr>
+<tr><td><b>Asie du Sud-Est</b></td><td>Paludisme (P. vivax, P. knowlesi), strongyloïdose, opisthorchiase</td></tr>
+<tr><td><b>Méditerranée / Moyen-Orient</b></td><td>Leishmaniose viscérale (L. infantum), échinococcose, toxoplasmose (forte séroprévalence)</td></tr>
+<tr><td><b>Universel (France incluse)</b></td><td>Toxoplasmose, gale, oxyures, teignes, échinococcose (E. multilocularis — Est de la France)</td></tr>
+</tbody></table>`
+      }
+    ]
+  }
+
+  ,{
     id: "candida",
     titre: "Candida spp. — Candidoses",
     icon: "🍄",
