@@ -695,6 +695,7 @@
     <button class="nav-tab" onclick="showSection('mecanismes')"><span class="tab-icon">🧬</span> Mécanismes</button>
     <button class="nav-tab" onclick="showSection('especes')"><span class="tab-icon">🦠</span> Par espèce</button>
     <button class="nav-tab" onclick="showSection('mycoparasito')"><span class="tab-icon">🍄</span> Myco/Parasito</button>
+    <button class="nav-tab" onclick="showSection('infos')"><span class="tab-icon">📋</span> Infos +</button>
     <button class="nav-tab" onclick="showSection('quiz')"><span class="tab-icon">🎯</span> Quiz</button>
   </div>
 
@@ -1167,7 +1168,7 @@
         <p>Rappels essentiels du programme : champignons, parasites, traitements. Hors virologie.</p>
       </div>
 
-      <div class="species-grid" id="mycoparasito-grid">
+      <div class="species-grid" id="mycoparasito-grid" style="display:grid;">
         <!-- Cards injected by JS -->
       </div>
 
@@ -1177,6 +1178,28 @@
           ← Retour aux fiches
         </button>
         <div id="mycoparasito-content"></div>
+      </div>
+    </div>
+
+
+    <!-- ===========================
+         SECTION INFOS COMPLEMENTAIRES
+         =========================== -->
+    <div class="section" id="section-infos">
+      <div class="section-header">
+        <div class="breadcrumb">INFOS COMPLÉMENTAIRES</div>
+        <h2>Situations cliniques — Fiches pratiques</h2>
+        <p>Infections sur cathéter, bactériémies, neutropénie fébrile, endocardite.</p>
+      </div>
+      <div class="species-grid" id="infos-grid" style="display:grid;">
+        <!-- Cards injected by JS -->
+      </div>
+      <div id="infos-detail" style="display:none; margin-top:1.5rem;">
+        <button onclick="document.getElementById('infos-detail').style.display='none'; document.getElementById('infos-grid').style.display='grid'"
+                style="background:var(--accent-blue);color:#fff;border:none;padding:.5rem 1.2rem;border-radius:8px;cursor:pointer;margin-bottom:1rem;">
+          ← Retour aux fiches
+        </button>
+        <div id="infos-content"></div>
       </div>
     </div>
 
@@ -3679,8 +3702,8 @@ const MYCO_FICHES = [
 </ul>`
       }
     ]
-  },
-  {
+  }
+  ,{
     id: "aspergillus",
     titre: "Aspergillus fumigatus — Aspergillose",
     icon: "🌿",
@@ -3719,8 +3742,8 @@ const MYCO_FICHES = [
 </div>`
       }
     ]
-  },
-  {
+  }
+  ,{
     id: "cryptococcus",
     titre: "Cryptococcus neoformans — Cryptococcose",
     icon: "🫧",
@@ -3753,8 +3776,8 @@ const MYCO_FICHES = [
 </div>`
       }
     ]
-  },
-  {
+  }
+  ,{
     id: "dermatophytes",
     titre: "Dermatophytes — Teignes & Mycoses cutanées",
     icon: "💅",
@@ -3779,8 +3802,7 @@ const MYCO_FICHES = [
 </tbody></table>`
       }
     ]
-  },
-
+  }
   ,{
     id: "pneumocystis",
     titre: "Pneumocystis jirovecii — Pneumocystose (PCP)",
@@ -3828,8 +3850,8 @@ const MYCO_FICHES = [
 </tbody></table>`
       }
     ]
-  },
-  {
+  }
+  ,{
     id: "gale_poux",
     titre: "Gale & Poux — Ectoparasitoses",
     icon: "🪲",
@@ -3857,8 +3879,8 @@ const MYCO_FICHES = [
 </tbody></table>`
       }
     ]
-  },
-  {
+  }
+  ,{
     id: "helminthes",
     titre: "Helminthes — Vers parasites",
     icon: "🪱",
@@ -3891,8 +3913,8 @@ const MYCO_FICHES = [
 </tbody></table>`
       }
     ]
-  },
-  {
+  }
+  ,{
     id: "antiparasitaires",
     titre: "Antiparasitaires & Antifongiques — Récapitulatif",
     icon: "💊",
@@ -3927,8 +3949,6 @@ const MYCO_FICHES = [
       }
     ]
   }
-
-
   ,{
     id: "paludisme",
     titre: "Paludisme — Plasmodium spp.",
@@ -3955,8 +3975,8 @@ const MYCO_FICHES = [
 </tbody></table>`
       }
     ]
-  },
-  {
+  }
+  ,{
     id: "toxoplasma",
     titre: "Toxoplasma gondii — Toxoplasmose",
     icon: "🐱",
@@ -3971,8 +3991,8 @@ const MYCO_FICHES = [
 </tbody></table>`
       }
     ]
-  },
-  {
+  }
+  ,{
     id: "leishmaniose",
     titre: "Leishmania spp. — Leishmanioses",
     icon: "🦟",
@@ -3987,8 +4007,8 @@ const MYCO_FICHES = [
 <p style='margin-top:1rem'><b>Vecteur :</b> Phlébotome. <b>Réservoir :</b> chien (L. infantum), rongeurs (L. major). <b>En France :</b> Bassin méditerranéen — PACA, Corse, Languedoc.</p>`
       }
     ]
-  },
-  {
+  }
+  ,{
     id: "trypanosoma",
     titre: "Trypanosoma — Trypanosomiases",
     icon: "🦟",
@@ -4003,7 +4023,10 @@ const MYCO_FICHES = [
       }
     ]
   }
-  ,{
+];
+
+const INFOS_FICHES = [
+  {
     id: "endocardite",
     titre: "Endocardite infectieuse — Critères de Duke",
     icon: "❤️",
@@ -4067,88 +4090,6 @@ Valve prothétique : +2 semaines supplémentaires dans chaque cas
 </ul>
 <div class='alert-box' style='background:rgba(220,38,38,.1);border-left:3px solid #dc2626;padding:.7rem 1rem;border-radius:6px;margin-top:.5rem;'>
 <b>Anticoagulation :</b> Continuer AVK si valve mécanique (INR cible bas 2-2.5). Héparine à éviter si végétations volumineuses (risque hémorragique cérébral si embole). Discuter au cas par cas avec l'équipe chirurgicale.
-</div>`
-      }
-    ]
-  }
-  ,{
-    id: "haemophilus",
-    titre: "Haemophilus influenzae",
-    icon: "🫁",
-    sections: [
-      {
-        titre: "Generalites",
-        contenu: `<ul style='line-height:2'>
-<li>Coccobacille Gram negatif, commensal des voies aeriennes superieures</li>
-<li><b>Souches encapsulees (typables) :</b> serotype b (Hib) = meningites, epiglottites avant vaccination. Quasi elimine par le vaccin Hib.</li>
-<li><b>Souches non encapsulees (non typables = NTHi) :</b> OMA, sinusite, exacerbation de BPCO, pneumonie</li>
-<li>Culture sur gelose chocolat (facteurs X et V necessaires)</li>
-</ul>`
-      },
-      {
-        titre: "Resistances aux beta-lactamines",
-        contenu: `<table class='atb-table'><thead><tr><th>Mecanisme</th><th>Phenotype</th><th>Test nitrocefine</th><th>Frequence</th></tr></thead><tbody>
-<tr><td><b>beta-lactamase TEM-1/ROB-1</b></td><td>R amoxicilline, S AMC, S C3G</td><td>Positif</td><td>~25-30%</td></tr>
-<tr><td><b>BLNAR</b> (mutation PBP3/ftsI)</td><td>R amoxicilline, I/R AMC, S C3G</td><td>Negatif</td><td>~5-10%</td></tr>
-<tr><td><b>Sauvage</b></td><td>S a tout</td><td>Negatif</td><td>~65%</td></tr>
-</tbody></table>
-<div class='alert-box' style='margin-top:.8rem;background:rgba(255,100,0,.12);border-left:3px solid orange;padding:.7rem 1rem;border-radius:6px;'>
-<b>Piege BLNAR :</b> test nitrocefine negatif MAIS resistant a l'amoxicilline (pas de beta-lactamase, modification des PBP). L'AMC peut aussi etre inactive. Pour infections severes a BLNAR : C3G (cefotaxime/ceftriaxone) ou fluoroquinolones.
-</div>`
-      },
-      {
-        titre: "Infections et traitements",
-        contenu: `<table class='atb-table'><thead><tr><th>Infection</th><th>1ere ligne</th><th>Remarque</th></tr></thead><tbody>
-<tr><td>OMA de l'enfant</td><td>Amoxicilline haute dose 80-90mg/kg/j</td><td>AMC si echec ou facteurs de risque</td></tr>
-<tr><td>Sinusite aigue severe</td><td>Amoxicilline/clavulanate PO</td><td>Couvre beta-lactamase mais pas BLNAR</td></tr>
-<tr><td>Exacerbation BPCO</td><td>AMC ou C2G ou FQ</td><td>Selon severite</td></tr>
-<tr><td><b>Meningite a Hib</b></td><td><b>Cefotaxime ou ceftriaxone IV + dexamethasone</b></td><td>Corticoides reduisent les sequelles auditives. Declaration obligatoire</td></tr>
-</tbody></table>`
-      }
-    ]
-  }
-  ,{
-    id: "coqueluche",
-    titre: "Bordetella pertussis — Coqueluche",
-    icon: "😮‍💨",
-    sections: [
-      {
-        titre: "Physiopathologie",
-        contenu: `<ul style='line-height:2'>
-<li>Coccobacille Gram negatif, strictement humain, tres contagieux (R0 ~ 12-17)</li>
-<li><b>Toxine pertussique (PT) :</b> responsable des quintes et de la lymphocytose caracteristique</li>
-<li>Immunite vaccinale decroit apres 5-10 ans : adultes/adolescents = reservoir principal</li>
-<li>Nourrisson &lt; 6 mois = forme grave (apnees, hyperleucocytose massive = mauvais pronostic)</li>
-</ul>`
-      },
-      {
-        titre: "Phases cliniques",
-        contenu: `<table class='atb-table'><thead><tr><th>Phase</th><th>Duree</th><th>Clinique</th><th>Contagiosite</th></tr></thead><tbody>
-<tr><td><b>Catarrhale</b></td><td>1-2 semaines</td><td>Rhinite, toux seche banale</td><td>+++ maximale</td></tr>
-<tr><td><b>Paroxystique</b></td><td>2-6 semaines</td><td>Quintes en salves, chant du coq, cyanose, vomissements post-tussifs. Apnees chez nourrisson</td><td>+ decroissante</td></tr>
-<tr><td><b>Convalescence</b></td><td>Semaines-mois</td><td>Toux residuelle</td><td>Non</td></tr>
-</tbody></table>
-<div class='alert-box' style='margin-top:.8rem;background:rgba(220,38,38,.1);border-left:3px solid #dc2626;padding:.7rem 1rem;border-radius:6px;'>
-<b>Nourrisson &lt; 3 mois :</b> pas de chant du coq. Se presente par apnees et cyanose. Mortalite elevee. Hospitalisation systematique.
-</div>`
-      },
-      {
-        titre: "Diagnostic",
-        contenu: `<table class='atb-table'><thead><tr><th>Methode</th><th>Phase optimale</th><th>Commentaire</th></tr></thead><tbody>
-<tr><td><b>PCR nasopharyngee</b></td><td>Phases precoces (&lt; 3 sem)</td><td>Reference. Se negative rapidement</td></tr>
-<tr><td>Serologie IgG anti-PT</td><td>Phase tardive (&gt; 3 sem)</td><td>Utile si PCR negative. Complexe si vaccine recemment</td></tr>
-<tr><td>NFS</td><td>Toutes phases</td><td>Lymphocytose &gt; 10 000/mm3. Hyperleucocytose massive = mauvais pronostic chez nourrisson</td></tr>
-</tbody></table>`
-      },
-      {
-        titre: "Traitement et prophylaxie",
-        contenu: `<table class='atb-table'><thead><tr><th></th><th>Traitement</th><th>Duree</th></tr></thead><tbody>
-<tr><td><b>Curatif</b></td><td><b>Azithromycine</b> 500mg J1 puis 250mg J2-J5 (adulte). Nourrisson : 20mg/kg/j x 3j</td><td>5j — reduit contagiosite mais PAS les symptomes en phase paroxystique</td></tr>
-<tr><td><b>Contacts proches</b></td><td>Azithromycine meme posologie pour tous les contacts &lt; 1m / &gt; 1h</td><td>Dans les 21j apres le dernier contact</td></tr>
-<tr><td><b>Eviction</b></td><td>5j apres debut traitement (ou 21j sans traitement)</td><td>Creches, maternites, collectivites</td></tr>
-</tbody></table>
-<div class='alert-box' style='margin-top:.8rem;background:rgba(59,130,246,.12);border-left:3px solid var(--accent-blue);padding:.7rem 1rem;border-radius:6px;'>
-<b>Vaccination :</b> Primovaccination nourrisson (2-4-11 mois). Rappels 6 ans, 11-13 ans, 25 ans. Strategie du cocooning : vacciner l'entourage avant la naissance. Vaccin acellulaire (DTCaP) : protection 5-10 ans seulement.
 </div>`
       }
     ]
@@ -4300,8 +4241,8 @@ Score &lt; 21 = <b>HAUT RISQUE</b> → hospitalisation + β-lactamine anti-Pseud
       }
     ]
   }
-
 ];
+
 
 function initMycoParsito() {
   const grid = document.getElementById('mycoparasito-grid');
@@ -4312,6 +4253,37 @@ function initMycoParsito() {
       <div class="species-name" style="font-size:1rem;">${f.titre}</div>
     </div>
   `).join('');
+}
+
+function initInfos() {
+  const grid = document.getElementById('infos-grid');
+  if (!grid) return;
+  grid.innerHTML = INFOS_FICHES.map(f => `
+    <div class="species-card" onclick="showInfos('${f.id}')" style="cursor:pointer;">
+      <div style="font-size:2rem;margin-bottom:.5rem;">${f.icon}</div>
+      <div class="species-name" style="font-size:1rem;">${f.titre}</div>
+    </div>
+  `).join('');
+}
+
+function showInfos(id) {
+  const fiche = INFOS_FICHES.find(f => f.id === id);
+  if (!fiche) return;
+  document.getElementById('infos-grid').style.display = 'none';
+  const detail = document.getElementById('infos-detail');
+  detail.style.display = 'block';
+  document.getElementById('infos-content').innerHTML = `
+    <div class="card" style="padding:1.5rem;">
+      <h2 style="color:var(--accent-blue);margin-bottom:1.5rem;">${fiche.icon} ${fiche.titre}</h2>
+      ${fiche.sections.map(s => `
+        <div style="margin-bottom:1.5rem;">
+          <h3 style="color:var(--text-primary);font-size:1rem;font-weight:700;margin-bottom:.8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border-color);">${s.titre}</h3>
+          <div style="font-size:.9rem;color:var(--text-secondary);line-height:1.7;">${s.contenu}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  detail.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 function showMycoParsito(id) {
@@ -4796,6 +4768,7 @@ function resetQuiz() {
 initCatFilters();
 buildQuiz();
 initMycoParsito();
+initInfos();
 </script>
 <script>
   if ('serviceWorker' in navigator) {
