@@ -2,7 +2,7 @@
   "name": "Microbio ECNi — Antibiogrammes & Infectiologie",
   "short_name": "Microbio ECN",
   "description": "Fiches et quiz d'infectiologie pour étudiants en médecine. Lecture d'antibiogrammes, myco, parasito.",
-  "start_url": "./antibiogramme.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
